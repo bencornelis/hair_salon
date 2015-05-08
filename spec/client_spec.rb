@@ -38,4 +38,20 @@ describe(Client) do
       expect(Client.all).to eq([])
     end
   end
+
+  describe("#update") do
+    it("can change the name of the client") do
+      test_client = Client.new({:name => "Joe"})
+      test_client.save
+      test_client.update({:name => "Joey"})
+      expect(test_client.name).to eq("Joey")
+    end
+
+    it("can assign or reassign a client to a stylist") do
+      test_client = Client.new({:name => "Joe"})
+      test_client.save
+      test_client.update({:stylist_id => 3})
+      expect(test_client.stylist_id).to eq(3)
+    end
+  end
 end

@@ -1,9 +1,10 @@
 class Client
-  attr_reader :name, :id
+  attr_reader :name, :id, :stylist_id
 
   def initialize(attributes)
     @name = attributes[:name]
     @id = attributes[:id]
+    @stylist_id = attributes[:stylist_id]
   end
 
   def ==(other_client)
@@ -19,13 +20,25 @@ class Client
     DB.exec("DELETE FROM clients WHERE id = #{id};")
   end
 
+  def update(attributes)
+    @name = attributes.fetch(:name, @name)
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
+
+    @stylist_id = attributes.fetch(:stylist_id, @stylist_id)
+    unless @stylist_id == nil
+      DB.exec("UPDATE clients SET stylist_id = #{@stylist_id} WHERE id = #{@id};")
+    end
+  end
+
   def self.all
     results = DB.exec("SELECT * FROM clients;")
     clients = []
     results.each do |result|
       name = result.fetch("name")
       id = result.fetch("id").to_i
-      clients << Client.new({:name => name, :id => id})
+      stylist_id = result.fetch("stylist_id").to_i
+      stylist_id = nil if stylist_id == 0
+      clients << Client.new({:name => name, :id => id, :stylist_id => stylist_id})
     end
     clients
   end
