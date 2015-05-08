@@ -60,7 +60,7 @@ class Client
     if @stylist_id == nil
       "<span class='text-success'>Unassigned</span>"
     else
-      "<span class='text-primary'>Assigned</span>"
+      "<span class='text-warning'>Assigned</span>"
     end
   end
 end

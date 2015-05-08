@@ -74,7 +74,7 @@ describe(Stylist) do
   end
 
   describe("#add_client") do
-    it("adds a client to a stylist by id") do
+    it("adds a client to a stylist") do
       test_stylist = Stylist.new({:name => "Joe"})
       test_stylist.save
       test_client = Client.new({:name => "Sally"})
@@ -102,7 +102,7 @@ describe(Stylist) do
       expect(test_stylist.status).to eq("<span class='text-danger'>Full</span>")
     end
 
-    it("results a string with boostrap text style text-info if a stylist has 1-4 clients") do
+    it("results a string with boostrap text style text-warning if a stylist has 1-4 clients") do
       test_stylist = Stylist.new({:name => "Joe"})
       test_stylist.save
       ['Sally','Tim','Jim'].each do |client_name|
@@ -110,7 +110,7 @@ describe(Stylist) do
         test_client.save
         test_stylist.add_client(test_client.id)
       end
-      expect(test_stylist.status).to eq("<span class='text-info'>Busy</span>")
+      expect(test_stylist.status).to eq("<span class='text-warning'>Busy</span>")
     end
 
   end

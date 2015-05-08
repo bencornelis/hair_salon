@@ -71,7 +71,7 @@ class Stylist
     when 5
       "<span class='text-danger'>Full</span>"
     else
-      "<span class='text-info'>Busy</span>"
+      "<span class='text-warning'>Busy</span>"
     end
   end
 end

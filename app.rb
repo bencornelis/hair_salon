@@ -4,6 +4,7 @@ require "./lib/client"
 require "./lib/stylist"
 also_reload('lib/**/*.rb')
 require "pg"
+require "pry"
 
 DB = PG.connect({:dbname => "hair_salon"})
 
@@ -42,6 +43,13 @@ patch("/stylists/:id") do
   @stylist = Stylist.find(params.fetch("id").to_i)
   new_name = params.fetch("stylist_name")
   @stylist.update({:name => new_name})
+  erb(:stylist)
+end
+
+post("/stylists/:id") do
+  @stylist = Stylist.find(params.fetch("id").to_i)
+  client_id = params.fetch("clients").to_i
+  @stylist.add_client(client_id)
   erb(:stylist)
 end
 

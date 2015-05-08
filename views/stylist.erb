@@ -7,7 +7,7 @@
       <tr><th>Clients</th></tr>
       <% @stylist.clients.each do |client| %>
         <tr>
-          <td><a href="/stylists/<%= stylist.id %>"><%= client %> </a></td>
+          <td><a href="/stylists/<%= @stylist.id %>"><%= client.name %> </a></td>
         </tr>
       <% end %>
     </table>
@@ -28,14 +28,18 @@
         <button type="submit" id="patch">Change stylist's name</button>
       </form>
     </div>
-    <div class="row">
-      <h5>Unassigned clients:</h5>
-      <form action="/stylists/<%= @stylist.id %>" method="post">
-        <select class="form-control" name="clients">
-          <% Client.unassigned.each do |client| %>
-            <option value="<%= client.id %>"> <%= client.name %></option>
-          <% end %>
-        <button type="submit" id="post">Add client</button>
-      </form>
-    </div>
+
+    <% if @stylist.client_count < 5 %>
+      <div class="row">
+        <h5>Unassigned clients:</h5>
+        <form action="/stylists/<%= @stylist.id %>" method="post">
+          <select id="clients" class="form-control" name="clients">
+            <% Client.unassigned.each do |client| %>
+              <option value="<%= client.id %>"> <%= client.name %></option>
+            <% end %>
+          </select>
+          <button type="submit" id="add_client">Add client</button>
+        </form>
+      </div>
+    <% end %>
   </div>

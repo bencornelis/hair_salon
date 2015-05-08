@@ -71,8 +71,8 @@ describe("adding a client to a stylist", {:type => :feature}) do
     test_stylist.save
     test_client = Client.new({:name => "Sally"})
     test_client.save
-    visit("/clients/#{test_client.id}")
-    select test_client.name, from: "clients"
+    visit("/stylists/#{test_stylist.id}")
+    select(test_client.name, :from => "clients")
     click_button("add_client")
     expect(page).to have_content("Sally")
   end
