@@ -42,4 +42,13 @@ class Client
     end
     clients
   end
+
+  def self.find(client_id)
+    result = DB.exec("SELECT * FROM clients WHERE id = #{client_id};")
+    name = result.first.fetch("name")
+    id = result.first.fetch("id").to_i
+    stylist_id = result.first.fetch("stylist_id").to_i
+    stylist_id = nil if stylist_id == 0
+    Client.new({:name => name, :id => id, :stylist_id => stylist_id})
+  end
 end
