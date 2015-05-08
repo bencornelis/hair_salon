@@ -1,0 +1,26 @@
+<h1 class="page-header text-center">Hair Salon</h1>
+
+<div class="col-md-6">
+  <table class="table table-bordered table-hover">
+    <tr><th>Stylists</th><th>Status</th></tr>
+    <% @stylists.each do |stylist| %>
+      <tr>
+        <th> <%= stylist.name %> </th>
+        <th> <%= stylist.status %> </th>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-md-6">
+  <table class="table table-bordered table-hover">
+    <tr><th>Clients</th><th>Status</th></tr>
+    <% @clients.each do |client| %>
+      <tr>
+        <th> <%= client.name %> </th>
+        <th> <%= client.status %> </th>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<h4>Click on a stylist or client to view/edit their details</h4>

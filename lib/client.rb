@@ -51,4 +51,12 @@ class Client
     stylist_id = nil if stylist_id == 0
     Client.new({:name => name, :id => id, :stylist_id => stylist_id})
   end
+
+  def status
+    if @stylist_id == nil
+      "<span class='green'>Unassigned</span>"
+    else
+      "<span class='red'>Assigned</span>"
+    end
+  end
 end
