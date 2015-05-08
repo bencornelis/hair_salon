@@ -3,12 +3,28 @@
   <head>
     <title>Hair Salon</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
   </head>
   <body>
     <div class = "container">
       <%= yield %>
     </div>
-    <hr>
-    <h3 class="page-footer"><a href="/">Home</a></h3>
   </body>
+  <footer>
+    <row>
+      <div id ="footer">
+        <div class="text-center">
+          <div class="col-md-4">
+            <a href="/">Home</a>
+          </div>
+          <div class="col-md-4">
+            <a href="/stylists/new">Add a stylist</a>
+          </div>
+          <div class="col-md-4">
+            <a href="/clients/new">Add a client</a>
+          </div>
+        </div>
+      </div>
+    </row>
+  </footer>
 </html>

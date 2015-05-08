@@ -67,11 +67,11 @@ class Stylist
   def status
     case client_count
     when 0
-      "<span class='green'>No clients</span>"
+      "<span class='text-success'>No clients</span>"
     when 5
-      "<span class='red'>Full</span>"
+      "<span class='text-danger'>Full</span>"
     else
-      "<span class='yellow'>Busy</span>"
+      "<span class='text-info'>Busy</span>"
     end
   end
 end

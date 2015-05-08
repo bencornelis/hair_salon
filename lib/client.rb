@@ -54,9 +54,9 @@ class Client
 
   def status
     if @stylist_id == nil
-      "<span class='green'>Unassigned</span>"
+      "<span class='text-success'>Unassigned</span>"
     else
-      "<span class='red'>Assigned</span>"
+      "<span class='text-primary'>Assigned</span>"
     end
   end
 end
