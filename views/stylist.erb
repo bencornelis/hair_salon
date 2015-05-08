@@ -2,7 +2,6 @@
   <%= @stylist.name %>: <%= @stylist.status %>
 </h1>
 
-<div class="row">
   <div class="col-md-6">
     <table class="table table-bordered table-hover">
       <tr><th>Clients</th></tr>
@@ -22,6 +21,7 @@
       </form>
     </div>
     <div class="row">
+      <h5>Update stylist info:</h5>
       <form action="/stylists/<%= @stylist.id %>" method="post">
         <input name="_method" type="hidden" value="patch">
         <input type="text" id="stylist_name" name="stylist_name">
@@ -29,6 +29,13 @@
       </form>
     </div>
     <div class="row">
+      <h5>Unassigned clients:</h5>
+      <form action="/stylists/<%= @stylist.id %>" method="post">
+        <select class="form-control" name="clients">
+          <% Client.unassigned.each do |client| %>
+            <option value="<%= client.id %>"> <%= client.name %></option>
+          <% end %>
+        <button type="submit" id="post">Add client</button>
+      </form>
     </div>
   </div>
-</div>

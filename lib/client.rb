@@ -43,6 +43,10 @@ class Client
     clients
   end
 
+  def self.unassigned
+    Client.all.select { |client| client.stylist_id == nil }
+  end
+
   def self.find(client_id)
     result = DB.exec("SELECT * FROM clients WHERE id = #{client_id};")
     name = result.first.fetch("name")
