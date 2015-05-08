@@ -28,7 +28,7 @@ class Stylist
 
   def delete
     DB.exec("DELETE FROM stylists WHERE id = #{@id};")
-    DB.exec("UPDATE clients SET stylist_id = 0 WHERE stylist_id = #{@id};")
+    DB.exec("UPDATE clients SET stylist_id = NULL WHERE stylist_id = #{@id};")
   end
 
   def update(attributes)
@@ -57,5 +57,21 @@ class Stylist
     name = result.first.fetch("name")
     id = result.first.fetch("id").to_i
     Stylist.new({:name => name, :id => id})
+  end
+
+  def client_count
+    result = DB.exec("SELECT count(*) FROM clients WHERE stylist_id = #{@id};")
+    client_count = result.first.fetch("count").to_i
+  end
+
+  def status
+    case client_count
+    when 0
+      "<span class='green'>No clients</span>"
+    when 5
+      "<span class='red'>Full</span>"
+    else
+      "<span class='yellow'>Busy</span>"
+    end
   end
 end

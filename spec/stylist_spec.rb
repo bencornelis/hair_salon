@@ -83,4 +83,35 @@ describe(Stylist) do
       expect(test_stylist.clients.first.id).to eq(test_client.id)
     end
   end
+
+  describe("#status") do
+    it("results a string with css style green if a stylist has no clients") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      expect(test_stylist.status).to eq("<span class='green'>No clients</span>")
+    end
+
+    it("results a string with css style red if a stylist has 5 clients") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      ['Sally','Tim','Jim','Ben','Cindy'].each do |client_name|
+        test_client = Client.new({:name => client_name})
+        test_client.save
+        test_stylist.add_client(test_client.id)
+      end
+      expect(test_stylist.status).to eq("<span class='red'>Full</span>")
+    end
+
+    it("results a string with css style yellow if a stylist has 1-4 clients") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      ['Sally','Tim','Jim'].each do |client_name|
+        test_client = Client.new({:name => client_name})
+        test_client.save
+        test_stylist.add_client(test_client.id)
+      end
+      expect(test_stylist.status).to eq("<span class='yellow'>Busy</span>")
+    end
+
+  end
 end
