@@ -12,7 +12,7 @@ Hair salon app with the following features:
 
 - users can add, delete, update, and view clients and stylists
 - users can assign/reassign clients to stylists
-- users can view the status of clients and stylists
+- users can view the status of clients (assigned/unassigned) and stylists (no clients/busy/full)
 
 ## Installation
 
@@ -24,7 +24,7 @@ bundle install
 
 ## Usage
 
-### Database setup
+#### Database setup
 
 Requires a psql database with the following commands for setup:
 
@@ -35,11 +35,14 @@ Requires a psql database with the following commands for setup:
 - CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);
 - CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
 
-To use the app run
+
+#### Run the app
+
+To use the app enter:
 ```
 ruby app.rb
 ```
-Navigate in your browser to localhost:4567. Once page loads click the add word button to get started.
+Navigate in your browser to localhost:4567. Once page loads add a few clients and stylists and play around!
 
 ### Bug reports
 
