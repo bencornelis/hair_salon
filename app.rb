@@ -70,3 +70,10 @@ patch("/clients/:id") do
   @client.update({:name => new_name})
   erb(:client)
 end
+
+post("/clients/:id") do
+  @client = Client.find(params.fetch("id").to_i)
+  stylist_id = params.fetch("stylists").to_i
+  @client.update({:stylist_id => stylist_id})
+  erb(:client)
+end

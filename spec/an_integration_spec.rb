@@ -76,4 +76,15 @@ describe("adding a client to a stylist", {:type => :feature}) do
     click_button("add_client")
     expect(page).to have_content("Sally")
   end
+
+  it("allows user to add an unassigned client to a stylist from the client's page") do
+    test_stylist = Stylist.new({:name => "John"})
+    test_stylist.save
+    test_client = Client.new({:name => "Sally"})
+    test_client.save
+    visit("/clients/#{test_client.id}")
+    select(test_stylist.name, :from => "stylists")
+    click_button("add_to_stylist")
+    expect(page).to have_content("John")
+  end
 end

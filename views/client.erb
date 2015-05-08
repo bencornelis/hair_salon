@@ -19,6 +19,22 @@
       <button type="submit" id="patch">Change client's name</button>
     </form>
   </div>
+
   <div class="row">
+    <h5>Stylists taking clients:</h5>
+    <form action="/clients/<%= @client.id %>" method="post">
+      <select id="stylists" class="form-control" name="stylists">
+        <% Stylist.taking_clients.each do |stylist| %>
+          <option value="<%= stylist.id %>"> <%= stylist.name %></option>
+        <% end %>
+      </select>
+      <% if @client.stylist_id == nil %>
+        <button type="submit" id="add_to_stylist">Assign to stylist</button>
+      <% else %>
+        <button type="submit" id="change_stylist">Reassign to stylist</button>
+      <% end %>
+    </form>
   </div>
+
+
 </div>

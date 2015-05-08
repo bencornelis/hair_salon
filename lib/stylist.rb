@@ -64,6 +64,10 @@ class Stylist
     client_count = result.first.fetch("count").to_i
   end
 
+  def self.taking_clients
+    Stylist.all.select { |stylist| stylist.client_count < 5 }
+  end
+
   def status
     case client_count
     when 0
