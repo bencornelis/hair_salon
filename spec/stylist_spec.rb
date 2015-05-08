@@ -85,13 +85,13 @@ describe(Stylist) do
   end
 
   describe("#status") do
-    it("results a string with boostrap text style text-success if a stylist has no clients") do
+    it("returns a string with bootstrap text style text-success if a stylist has no clients") do
       test_stylist = Stylist.new({:name => "Joe"})
       test_stylist.save
       expect(test_stylist.status).to eq("<span class='text-success'>No clients</span>")
     end
 
-    it("results a string with boostrap text style text-danger if a stylist has 5 clients") do
+    it("returns a string with bootstrap text style text-danger if a stylist has 5 clients") do
       test_stylist = Stylist.new({:name => "Joe"})
       test_stylist.save
       ['Sally','Tim','Jim','Ben','Cindy'].each do |client_name|
@@ -102,7 +102,7 @@ describe(Stylist) do
       expect(test_stylist.status).to eq("<span class='text-danger'>Full</span>")
     end
 
-    it("results a string with boostrap text style text-warning if a stylist has 1-4 clients") do
+    it("returns a string with bootstrap text style text-warning if a stylist has 1-4 clients") do
       test_stylist = Stylist.new({:name => "Joe"})
       test_stylist.save
       ['Sally','Tim','Jim'].each do |client_name|
