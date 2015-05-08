@@ -55,4 +55,32 @@ describe(Stylist) do
       expect(Stylist.find(test_stylist.id)).to eq(test_stylist)
     end
   end
+
+  describe("#update") do
+    it("can change the name of the stylist") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      test_stylist.update({:name => "Joey"})
+      expect(test_stylist.name).to eq("Joey")
+    end
+  end
+
+  describe("#clients") do
+    it("is empty at first") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      expect(test_stylist.clients).to eq([])
+    end
+  end
+
+  describe("#add_client") do
+    it("adds a client to a stylist by id") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      test_client = Client.new({:name => "Sally"})
+      test_client.save
+      test_stylist.add_client(test_client.id)
+      expect(test_stylist.clients.first.id).to eq(test_client.id)
+    end
+  end
 end
