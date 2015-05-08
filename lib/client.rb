@@ -15,6 +15,10 @@ class Client
     @id = result.first.fetch("id").to_i
   end
 
+  def delete
+    DB.exec("DELETE FROM clients WHERE id = #{id};")
+  end
+
   def self.all
     results = DB.exec("SELECT * FROM clients;")
     clients = []
