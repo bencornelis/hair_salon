@@ -2,32 +2,33 @@
   <%= @stylist.name %>: <%= @stylist.status %>
 </h1>
 
-<div class="col-md-6">
-  <table class="table table-bordered table-hover">
-    <tr><th>Clients</th></tr>
-    <% @stylist.clients.each do |client| %>
-      <tr>
-        <td><a href="/stylists/<%= stylist.id %>"><%= client %> </a></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-bordered table-hover">
+      <tr><th>Clients</th></tr>
+      <% @stylist.clients.each do |client| %>
+        <tr>
+          <td><a href="/stylists/<%= stylist.id %>"><%= client %> </a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-<div class="col-md 6">
-  <div class="row">
-    <form action="/stylists/<%= @stylist.id %>" method="post">
-      <input name="_method" type="hidden" value="delete">
-      <button type="submit" id="delete">Remove stylist</button>
-    </form>
-  </div>
-  <div class="row">
-    <form action="/stylists/<%= @stylist.id %>" method="post">
-      <input name="_method" type="hidden" value="patch">
-      <label for="stylist_name"></label>
-      <input type="text" id="stylist_name" name="stylist_name">
-      <button type="submit" id="patch">Change stylist's name</button>
-    </form>
-  </div>
-  <div class="row">
+  <div class="col-md-3 col-md-offset-1">
+    <div class="row">
+      <form action="/stylists/<%= @stylist.id %>" method="post">
+        <input name="_method" type="hidden" value="delete">
+        <button type="submit" id="delete">Remove stylist</button>
+      </form>
+    </div>
+    <div class="row">
+      <form action="/stylists/<%= @stylist.id %>" method="post">
+        <input name="_method" type="hidden" value="patch">
+        <input type="text" id="stylist_name" name="stylist_name">
+        <button type="submit" id="patch">Change stylist's name</button>
+      </form>
+    </div>
+    <div class="row">
+    </div>
   </div>
 </div>

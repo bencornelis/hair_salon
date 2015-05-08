@@ -42,3 +42,25 @@ describe("deleting a client", {:type => :feature}) do
     expect(page).to have_no_content("Jim")
   end
 end
+
+describe("changing a stylist's name", {:type => :feature}) do
+  it("allows user to change a stylist's name") do
+    test_stylist = Stylist.new({:name => "John"})
+    test_stylist.save
+    visit("/stylists/#{test_stylist.id}")
+    fill_in("stylist_name", :with => "Jonny")
+    click_button("patch")
+    expect(page).to have_content("Jonny")
+  end
+end
+
+describe("changing a client's name", {:type => :feature}) do
+  it("allows user to change a client's name") do
+    test_client = Client.new({:name => "John"})
+    test_client.save
+    visit("/clients/#{test_client.id}")
+    fill_in("client_name", :with => "Jonny")
+    click_button("patch")
+    expect(page).to have_content("Jonny")
+  end
+end
