@@ -9,9 +9,9 @@ describe(Client) do
   end
 
   describe("#==") do
-    it("is true when two clients have the same name and id") do
-      client1 = Client.new({:name => "Joe"})
-      client2 = Client.new({:name => "Joe"})
+    it("is true when two clients have the same attributes") do
+      client1 = Client.new({:name => "Joe", :id => 2, :stylist_id => 5})
+      client2 = Client.new({:name => "Joe", :id => 2, :stylist_id => 5})
       expect(client1).to eq(client2)
     end
   end
@@ -57,7 +57,7 @@ describe(Client) do
 
   describe(".find") do
     it("finds a client by their id") do
-      test_client = Client.new({:name => "Joe", :stylist_id => 3})
+      test_client = Client.new({:name => "Joe"})
       test_client.save
       expect(Client.find(test_client.id)).to eq(test_client)
     end

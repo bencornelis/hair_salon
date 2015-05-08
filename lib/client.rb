@@ -8,7 +8,7 @@ class Client
   end
 
   def ==(other_client)
-    (@name == other_client.name) && (@id == other_client.id)
+    (@name == other_client.name) && (@id == other_client.id) && (@stylist_id == other_client.stylist_id)
   end
 
   def save
@@ -17,7 +17,7 @@ class Client
   end
 
   def delete
-    DB.exec("DELETE FROM clients WHERE id = #{id};")
+    DB.exec("DELETE FROM clients WHERE id = #{@id};")
   end
 
   def update(attributes)
