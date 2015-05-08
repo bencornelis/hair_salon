@@ -2,22 +2,38 @@
 <h5>Click on a stylist or client to view/edit their details</h5>
 <hr>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <form class="form-inline" action="/stylists/new" method="post">
       <button type="submit" id="add_stylist" class="btn btn-success">Add stylist</button>
       <input type="text" id="stylist_name" name="stylist_name" class="form-control">
     </form>
+
+    <h5>Percent of stylists with clients:</h5>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="<%= Stylist.percent_with_clients %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= Stylist.percent_with_clients %>%;">
+        <%= Stylist.percent_with_clients %>%
+      </div>
+    </div>
+
   </div>
-  <div class="col-md-6">
+  <div class="col-md-5 col-md-offset-2">
     <form class='form-inline' action="/clients/new" method="post">
       <button type="submit" id="add_client" class="btn btn-success">Add client</button>
       <input type="text" id="client_name" name="client_name" class="form-control">
     </form>
+
+    <h5>Percent of clients assigned to stylists:</h5>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="<%= Client.percent_assigned %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= Client.percent_assigned %>%;">
+        <%= Client.percent_assigned %>%
+      </div>
+    </div>
+
   </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <table class="table table-bordered table-hover">
       <tr><th>Stylists</th><th>Status</th></tr>
       <% @stylists.each do |stylist| %>
@@ -29,7 +45,7 @@
     </table>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-5 col-md-offset-2">
     <table class="table table-bordered table-hover">
       <tr><th>Clients</th><th>Status</th></tr>
       <% @clients.each do |client| %>

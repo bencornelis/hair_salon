@@ -68,6 +68,18 @@ class Stylist
     Stylist.all.select { |stylist| stylist.client_count < 5 }
   end
 
+  def self.with_clients
+    Stylist.all.select { |stylist| stylist.client_count > 0 }
+  end
+
+  def self.percent_with_clients
+    if Stylist.all.any?
+      100*(Stylist.with_clients.length)/(Stylist.all.length)
+    else
+      0
+    end
+  end
+
   def status
     case client_count
     when 0

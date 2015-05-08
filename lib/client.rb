@@ -49,6 +49,18 @@ class Client
     Client.all.select { |client| client.stylist_id == nil }
   end
 
+  def self.assigned
+    Client.all.select { |client| client.stylist_id != nil }
+  end
+
+  def self.percent_assigned
+    if Client.all.any?
+      100*(Client.assigned.length)/(Client.all.length)
+    else
+      0
+    end
+  end
+
   def self.find(client_id)
     result = DB.exec("SELECT * FROM clients WHERE id = #{client_id};")
     name = result.first.fetch("name")
