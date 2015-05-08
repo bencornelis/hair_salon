@@ -8,7 +8,7 @@ Ben Cornelis
 
 ## About
 
-Hair salon app with the following features:
+Hair salon Sinatra app (Ruby v 2.2.0) with the following features:
 
 - users can add, delete, update, and view clients and stylists
 - users can assign/reassign clients to stylists
@@ -38,11 +38,11 @@ Requires a psql database with the following commands for setup:
 
 #### Run the app
 
-To use the app enter:
+To use the app run:
 ```
 ruby app.rb
 ```
-Navigate in your browser to localhost:4567. Once page loads add a few clients and stylists and play around!
+Navigate in your browser to localhost:4567. Once page loads add a few clients and stylists to get started.
 
 ### Bug reports
 
