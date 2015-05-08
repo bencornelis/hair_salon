@@ -88,3 +88,18 @@ describe("adding a client to a stylist", {:type => :feature}) do
     expect(page).to have_content("John")
   end
 end
+
+describe("removing a client from a stylist", {:type => :feature}) do
+  it("lets the user remove a client from a stylist from the stylist's page") do
+    test_stylist = Stylist.new({:name => "John"})
+    test_stylist.save
+    test_client = Client.new({:name => "Sally"})
+    test_client.save
+    test_stylist.add_client(test_client.id)
+    visit("/stylists/#{test_stylist.id}")
+    click_button("#{test_client.id}")
+    click_link("Home")
+    click_link(test_client.name)
+    expect(page).to have_content("Unassigned")
+  end
+end

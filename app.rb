@@ -77,3 +77,10 @@ post("/clients/:id") do
   @client.update({:stylist_id => stylist_id})
   erb(:client)
 end
+
+delete("/remove/:stylist_id/:client_id") do
+  stylist_id = params.fetch("stylist_id")
+  client = Client.find(params.fetch("client_id").to_i)
+  client.update({:stylist_id => nil})
+  redirect("/stylists/#{stylist_id}")
+end

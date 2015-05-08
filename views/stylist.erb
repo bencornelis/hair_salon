@@ -4,10 +4,15 @@
 
   <div class="col-md-6">
     <table class="table table-bordered table-hover">
-      <tr><th>Clients</th></tr>
+      <tr><th>Clients</th><th>Remove client</th></tr>
       <% @stylist.clients.each do |client| %>
         <tr>
-          <td><a href="/stylists/<%= @stylist.id %>"><%= client.name %> </a></td>
+          <td><a href="/clients/<%= client.id %>"> <%= client.name %> </a></td>
+          <td><form action="/remove/<%= @stylist.id %>/<%= client.id %>" method="post">
+                <input name="_method" type="hidden" value="delete">
+                <button type="submit" id="<%= client.id %>">remove</button>
+              </form>
+          </td>
         </tr>
       <% end %>
     </table>

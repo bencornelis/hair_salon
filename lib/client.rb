@@ -27,6 +27,8 @@ class Client
     @stylist_id = attributes.fetch(:stylist_id, @stylist_id)
     unless @stylist_id == nil
       DB.exec("UPDATE clients SET stylist_id = #{@stylist_id} WHERE id = #{@id};")
+    else
+      DB.exec("UPDATE clients SET stylist_id = NULL WHERE id = #{@id};")
     end
   end
 
