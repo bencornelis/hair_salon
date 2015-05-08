@@ -3,6 +3,21 @@
 <hr>
 <div class="row">
   <div class="col-md-6">
+    <form action="/stylists/new" method="post">
+      <button type="submit" id="add_stylist">Add stylist</button>
+      <input type="text" id="stylist_name" name="stylist_name">
+    </form>
+  </div>
+  <div class="col-md-6">
+    <form action="/clients/new" method="post">
+      <button type="submit" id="add_client">Add client</button>
+      <input type="text" id="client_name" name="client_name">
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-6">
     <table class="table table-bordered table-hover">
       <tr><th>Stylists</th><th>Status</th></tr>
       <% @stylists.each do |stylist| %>
@@ -24,20 +39,5 @@
         </tr>
       <% end %>
     </table>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <form action="/stylists/new" method="post">
-      <input type="text" id="stylist_name" name="stylist_name">
-      <button type="submit" id="add_stylist">Add stylist</button>
-    </form>
-  </div>
-  <div class="col-md-6">
-    <form action="/clients/new" method="post">
-      <input type="text" id="client_name" name="client_name">
-      <button type="submit" id="add_client">Add client</button>
-    </form>
   </div>
 </div>
