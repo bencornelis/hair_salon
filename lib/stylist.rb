@@ -30,4 +30,11 @@ class Stylist
     DB.exec("DELETE FROM stylists WHERE id = #{@id};")
     DB.exec("UPDATE clients SET stylist_id = 0 WHERE stylist_id = #{@id};")
   end
+
+  def self.find(stylist_id)
+    result = DB.exec("SELECT * FROM stylists WHERE id = #{stylist_id};")
+    name = result.first.fetch("name")
+    id = result.first.fetch("id").to_i
+    Stylist.new({:name => name, :id => id})
+  end
 end

@@ -47,4 +47,12 @@ describe(Stylist) do
       expect(Client.find(sally_client.id).stylist_id).to eq(nil)
     end
   end
+
+  describe(".find") do
+    it("finds a stylist by their id") do
+      test_stylist = Stylist.new({:name => "Joe"})
+      test_stylist.save
+      expect(Stylist.find(test_stylist.id)).to eq(test_stylist)
+    end
+  end
 end
