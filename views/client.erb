@@ -3,36 +3,40 @@
 </h1>
 <% unless @client.stylist_id == nil %>
   <h5>Currently assigned to <%= Stylist.find(@client.stylist_id).name %></h5>
+  <hr>
 <% end %>
-<hr>
-<div class="col-md 6">
+<div class="col-md-6 col-md-offset-4">
+  <p>
   <div class="row">
     <form action="/clients/<%= @client.id %>" method="post">
       <input name="_method" type="hidden" value="delete">
-      <button type="submit" id="delete">Remove client</button>
+      <button type="submit" id="delete" class="btn btn-danger">Remove client</button>
     </form>
   </div>
+  </p>
+  <p>
   <div class="row">
-    <form action="/clients/<%= @client.id %>" method="post">
-      <input name="_method" type="hidden" value="patch">
-      <input type="text" id="client_name" name="client_name">
-      <button type="submit" id="patch">Change client's name</button>
+    <form class="form-inline" action="/clients/<%= @client.id %>" method="post">
+      <button type="submit" id="patch" class="btn btn-warning">Change client's name</button>
+      <div class="form-group">
+        <input name="_method" type="hidden" value="patch">
+        <input type="text" id="client_name" class="form-control" name="client_name">
+      </div>
     </form>
   </div>
-
+  </p>
   <div class="row">
-    <h5>Stylists taking clients:</h5>
-    <form action="/clients/<%= @client.id %>" method="post">
+    <form class="form-inline" action="/clients/<%= @client.id %>" method="post">
+      <% if @client.stylist_id == nil %>
+        <button type="submit" id="add_to_stylist" class="btn btn-success">Assign to stylist</button>
+      <% else %>
+        <button type="submit" id="change_stylist" class="btn btn-success">Reassign to stylist</button>
+      <% end %>
       <select id="stylists" class="form-control" name="stylists">
         <% Stylist.taking_clients.each do |stylist| %>
           <option value="<%= stylist.id %>"> <%= stylist.name %></option>
         <% end %>
       </select>
-      <% if @client.stylist_id == nil %>
-        <button type="submit" id="add_to_stylist">Assign to stylist</button>
-      <% else %>
-        <button type="submit" id="change_stylist">Reassign to stylist</button>
-      <% end %>
     </form>
   </div>
 

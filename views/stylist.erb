@@ -2,48 +2,56 @@
   <%= @stylist.name %>: <%= @stylist.status %>
 </h1>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <table class="table table-bordered table-hover">
-      <tr><th>Clients</th><th>Remove client</th></tr>
+      <tr><th>Clients</th></tr>
+      <tbody>
       <% @stylist.clients.each do |client| %>
         <tr>
-          <td><a href="/clients/<%= client.id %>"> <%= client.name %> </a></td>
-          <td><form action="/remove/<%= @stylist.id %>/<%= client.id %>" method="post">
+          <td><form class="form-inline" action="/remove/<%= @stylist.id %>/<%= client.id %>" method="post">
                 <input name="_method" type="hidden" value="delete">
-                <button type="submit" id="<%= client.id %>">remove</button>
+                <a href="/clients/<%= client.id %>"> <%= client.name %> </a>
+                <button type="submit" id="<%= client.id %>" class="btn btn-danger remove">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
               </form>
           </td>
         </tr>
       <% end %>
+    </tbody>
     </table>
   </div>
 
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-5 col-md-offset-2">
+    <p>
     <div class="row">
       <form action="/stylists/<%= @stylist.id %>" method="post">
         <input name="_method" type="hidden" value="delete">
-        <button type="submit" id="delete">Remove stylist</button>
+        <button type="submit" id="delete" class="btn btn-danger">Remove stylist</button>
       </form>
     </div>
-    <div class="row">
-      <h5>Update stylist info:</h5>
-      <form action="/stylists/<%= @stylist.id %>" method="post">
-        <input name="_method" type="hidden" value="patch">
-        <input type="text" id="stylist_name" name="stylist_name">
-        <button type="submit" id="patch">Change stylist's name</button>
-      </form>
-    </div>
+    </p>
 
+    <p>
+    <div class="row">
+      <form class="form-inline" action="/stylists/<%= @stylist.id %>" method="post">
+        <button type="submit" id="patch" class="btn btn-warning">Change stylist's name</button>
+        <div class="form-group">
+          <input name="_method" type="hidden" value="patch">
+          <input type="text" id="stylist_name" name="stylist_name" class="form-control">
+        </div>
+      </form>
+    </div>
+    </p>
     <% if @stylist.client_count < 5 %>
       <div class="row">
-        <h5>Unassigned clients:</h5>
-        <form action="/stylists/<%= @stylist.id %>" method="post">
+        <form class="form-inline" action="/stylists/<%= @stylist.id %>" method="post">
+          <button type="submit" id="add_client" class="btn btn-success">Add client</button>
           <select id="clients" class="form-control" name="clients">
             <% Client.unassigned.each do |client| %>
               <option value="<%= client.id %>"> <%= client.name %></option>
             <% end %>
           </select>
-          <button type="submit" id="add_client">Add client</button>
         </form>
       </div>
     <% end %>
