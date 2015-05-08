@@ -34,3 +34,25 @@ post("/clients/new") do
   new_client.save
   redirect("/")
 end
+
+get("/stylists/:id") do
+  @stylist = Stylist.find(params.fetch("id").to_i)
+  erb(:stylist)
+end
+
+delete("/stylists/:id") do
+  stylist = Stylist.find(params.fetch("id").to_i)
+  stylist.delete
+  redirect("/")
+end
+
+get("/clients/:id") do
+  @client = Client.find(params.fetch("id").to_i)
+  erb(:client)
+end
+
+delete("/clients/:id") do
+  client = Client.find(params.fetch("id").to_i)
+  client.delete
+  redirect("/")
+end
